@@ -1,0 +1,6 @@
+hostname: httpbin.org
+port: 80
+database:
+  hostname: localhost
+  username: test
+  password: test
