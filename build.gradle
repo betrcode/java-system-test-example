@@ -1,9 +1,12 @@
 plugins {
     id 'java'
     id 'maven' // For mavenDeployer
+    id 'pl.allegro.tech.build.axion-release' version '1.9.0'
+    id 'com.jfrog.bintray' version '1.8.0'
 }
 
 group = 'se.bettercode.systemtest'
+project.version = scmVersion.version
 
 repositories {
     jcenter()
@@ -47,12 +50,21 @@ jar {
     )
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "https://somehost/content/repositories/some-releases") {
-                authentication(userName: 'testuser', password: 'testpass')
-            }
+scmVersion {
+    versionIncrementer 'incrementPatch'
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    configurations = ['archives']
+    pkg {
+        repo = 'java-system-test-example'
+        name = 'java-system-test-example'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/betrcode/java-system-test-example.git'
+        version {
+            name = project.version
         }
     }
 }
