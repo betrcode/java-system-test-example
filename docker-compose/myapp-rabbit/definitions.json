@@ -1,0 +1,35 @@
+{
+  "rabbit_version": "3.6.14",
+  "users": [
+    {
+      "name": "myapp",
+      "password": "myapp",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "vhost1"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "myapp",
+      "vhost": "vhost1",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "queues": [
+    {
+      "name": "myapp-events-queue",
+      "vhost": "vhost1",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [],
+  "bindings": []
+}
