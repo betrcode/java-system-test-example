@@ -31,5 +31,36 @@ When you run the tests in a Continuous Delivery pipeline, you probably want to
 run them from a published artifact (a jar in this case). Here's an example of how to do that:
 `java -DconfigFile="config/example-config.yml" -cp system-tests.jar org.junit.runner.JUnitCore se.bettercode.systemtest.suite.FirstTestSuite`
 
+## How to spin up a Dockerized system and run tests against it
+```bash
+max@max-x1:~/work/system-tests$ docker-compose -f docker-compose/docker-compose.yml up -d
+Creating network "dockercompose_default" with the default driver
+Creating myapp-database
+Creating myapp-rabbit
+Creating external-nasty-xml-stub
+Creating myapp
+max@max-x1:~/work/system-tests$ ./gradlew clean build -DconfigFile=config/dockerized-config.yml
+Starting a Gradle Daemon, 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+
+> Task :test 
+
+se.bettercode.systemtest.suite.FirstTestSuite > se.bettercode.systemtest.ExampleTest.restEndpointIsOK PASSED
+
+BUILD SUCCESSFUL in 13s
+4 actionable tasks: 4 executed
+max@max-x1:~/work/system-tests$ docker-compose -f docker-compose/docker-compose.yml down
+Stopping myapp ... done
+Stopping myapp-rabbit ... done
+Stopping external-nasty-xml-stub ... done
+Stopping myapp-database ... done
+Removing myapp ... done
+Removing myapp-rabbit ... done
+Removing external-nasty-xml-stub ... done
+Removing myapp-database ... done
+Removing network dockercompose_default
+max@max-x1:~/work/system-tests$ 
+
+```
+
 ## How to build jar
 `./gradlew clean jar`
