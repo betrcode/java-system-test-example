@@ -3,7 +3,7 @@ System tests example using Java and RestAssured
 
 This is some example code of how you can create system tests to test a REST service.
 
-The purpose of these system tests are to test a deployed system.
+The purpose of these system tests are to test a deployed system, or a dockerized system.
 This can be needed to check that you have configured and wired things correctly.
 
 We drive the system tests with good old _JUnit_. There is not always need for a more abstract BDD framework.
@@ -12,6 +12,11 @@ We use the _RestAssured_ framework which I like to use to test HTTP REST service
 
 To load configuration from a Yaml files, we use _SnakeYaml_ which requires very little code to get a structured
 yml file into a Java object.
+
+## Deployed system vs Dockerized system
+A "deployed system" is a system which is deployed to real machines, virtual or directly on metal, preferrably using the same provisioning as you do on your production environment.
+
+A "dockerized system" is a system where all of the services in the system are started as Docker containers, usually using Docker Compose and often in the same machine.
 
 ## How to run tests
 
