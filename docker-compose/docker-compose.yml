@@ -32,12 +32,10 @@ services:
 
   myapp:
     container_name: myapp
-    image: nginx:1  # Using something external which can start, replace with your actual app and configure it to connect to the rabbit, the db and the external XML service.
+    image: kennethreitz/httpbin  # Using something external which can start, replace with your actual app and configure it to connect to the rabbit, the db and the external XML service.
     ports:
       - "8080:80"
     depends_on:
       - myapp-rabbit
       - myapp-database
       - external-nasty-xml-stub
-    volumes:
-      - ./myapp:/usr/share/nginx/html:ro
