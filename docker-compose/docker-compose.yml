@@ -39,3 +39,5 @@ services:
       - myapp-rabbit
       - myapp-database
       - external-nasty-xml-stub
+    volumes:
+      - ./myapp:/usr/share/nginx/html:ro

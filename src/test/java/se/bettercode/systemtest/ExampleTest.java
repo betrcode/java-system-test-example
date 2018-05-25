@@ -1,6 +1,7 @@
 package se.bettercode.systemtest;
 
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ public class ExampleTest {
 
   @Before
   public void setUp() {
+    RestAssured.registerParser("application/octet-stream", Parser.JSON);
     url = String.format(URL_FORMAT, SETUP.getConfig().getHostname(), SETUP.getConfig().getPort());
     LOGGER.info("Testing: {}", url);
   }

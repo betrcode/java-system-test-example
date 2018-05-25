@@ -1,0 +1,6 @@
+hostname: localhost
+port: 8080
+database:
+  hostname: localhost
+  username: test
+  password: test
